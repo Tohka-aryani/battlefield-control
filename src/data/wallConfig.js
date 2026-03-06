@@ -1,0 +1,163 @@
+/**
+ * RSS feeds for The Wall, map, and ticker. Source analysis (bias, factual) for the modal.
+ */
+export const RSS_FEEDS = [
+  // World / US general
+  { url: 'https://feeds.bbci.co.uk/news/world/rss.xml', sourceKey: 'BBC World' },
+  { url: 'https://www.theguardian.com/world/rss', sourceKey: 'Guardian World' },
+  { url: 'https://news.google.com/rss/search?q=site:apnews.com&hl=en-US&gl=US&ceid=US:en', sourceKey: 'AP News' },
+  { url: 'https://news.google.com/rss/search?q=site:reuters.com+world&hl=en-US&gl=US&ceid=US:en', sourceKey: 'Reuters World' },
+  { url: 'https://news.google.com/rss/search?q=site:cnn.com+world+news+when:1d&hl=en-US&gl=US&ceid=US:en', sourceKey: 'CNN World' },
+  { url: 'https://feeds.npr.org/1001/rss.xml', sourceKey: 'NPR News' },
+  { url: 'https://news.google.com/rss/search?q=site:politico.com+when:1d&hl=en-US&gl=US&ceid=US:en', sourceKey: 'Politico' },
+  { url: 'https://api.axios.com/feed/', sourceKey: 'Axios' },
+  { url: 'https://moxie.foxnews.com/google-publisher/us.xml', sourceKey: 'Fox News' },
+  { url: 'https://feeds.nbcnews.com/feeds/topstories', sourceKey: 'NBC News' },
+  { url: 'https://www.cbsnews.com/latest/rss/main', sourceKey: 'CBS News' },
+  { url: 'https://feeds.reuters.com/Reuters/domesticNews', sourceKey: 'Reuters US' },
+  // Europe
+  { url: 'https://www.france24.com/en/rss', sourceKey: 'France 24' },
+  { url: 'https://www.euronews.com/rss?format=xml', sourceKey: 'EuroNews' },
+  { url: 'https://www.lemonde.fr/en/rss/une.xml', sourceKey: 'Le Monde' },
+  { url: 'https://rss.dw.com/xml/rss-en-all', sourceKey: 'DW News' },
+  { url: 'https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada', sourceKey: 'El País' },
+  { url: 'https://e00-elmundo.uecdn.es/elmundo/rss/portada.xml', sourceKey: 'El Mundo' },
+  { url: 'https://www.bbc.com/mundo/index.xml', sourceKey: 'BBC Mundo' },
+  { url: 'https://www.tagesschau.de/xml/rss2/', sourceKey: 'Tagesschau' },
+  { url: 'https://www.bild.de/feed/alles.xml', sourceKey: 'Bild' },
+  { url: 'https://www.spiegel.de/schlagzeilen/tops/index.rss', sourceKey: 'Der Spiegel' },
+  { url: 'https://newsfeed.zeit.de/index', sourceKey: 'Die Zeit' },
+  { url: 'https://www.ansa.it/sito/notizie/topnews/topnews_rss.xml', sourceKey: 'ANSA' },
+  { url: 'https://www.corriere.it/rss/homepage.xml', sourceKey: 'Corriere della Sera' },
+  { url: 'https://www.repubblica.it/rss/homepage/rss2.0.xml', sourceKey: 'Repubblica' },
+  { url: 'https://feeds.nos.nl/nosnieuwsalgemeen', sourceKey: 'NOS Nieuws' },
+  { url: 'https://www.nrc.nl/rss/', sourceKey: 'NRC' },
+  { url: 'https://www.svt.se/nyheter/rss.xml', sourceKey: 'SVT Nyheter' },
+  { url: 'https://www.dn.se/rss/', sourceKey: 'Dagens Nyheter' },
+  { url: 'https://www.svd.se/feed/articles.rss', sourceKey: 'Svenska Dagbladet' },
+  // Middle East / Africa / Americas / Asia
+  { url: 'https://feeds.bbci.co.uk/news/world/middle_east/rss.xml', sourceKey: 'BBC Middle East' },
+  { url: 'https://www.aljazeera.com/xml/rss/all.xml', sourceKey: 'Al Jazeera' },
+  { url: 'https://www.federalreserve.gov/feeds/press_all.xml', sourceKey: 'Federal Reserve' },
+  { url: 'https://www.sec.gov/news/pressreleases.rss', sourceKey: 'SEC' },
+  { url: 'https://news.un.org/feed/subscribe/en/news/all/rss.xml', sourceKey: 'UN News' },
+  { url: 'https://www.cisa.gov/cybersecurity-advisories/all.xml', sourceKey: 'CISA' },
+  { url: 'https://www.foreignaffairs.com/rss.xml', sourceKey: 'Foreign Affairs' },
+  { url: 'https://www.who.int/rss-feeds/news-english.xml', sourceKey: 'WHO' },
+  { url: 'https://feeds.bbci.co.uk/news/world/africa/rss.xml', sourceKey: 'BBC Africa' },
+  { url: 'https://www.bbc.com/afrique/index.xml', sourceKey: 'BBC Afrique' },
+  { url: 'https://feeds.bbci.co.uk/news/world/latin_america/rss.xml', sourceKey: 'BBC Latin America' },
+  { url: 'https://feeds.folha.uol.com.br/emcimadahora/rss091.xml', sourceKey: 'Folha de S.Paulo' },
+  { url: 'https://www.brasilparalelo.com.br/noticias/rss.xml', sourceKey: 'Brasil Paralelo' },
+  { url: 'https://www.eltiempo.com/rss/mundo_latinoamerica.xml', sourceKey: 'El Tiempo' },
+  { url: 'https://feeds.bbci.co.uk/news/world/asia/rss.xml', sourceKey: 'BBC Asia' },
+  { url: 'https://www.thehindu.com/news/national/feeder/default.rss', sourceKey: 'The Hindu' },
+  { url: 'https://feeds.feedburner.com/ndtvnews-top-stories', sourceKey: 'NDTV' },
+  { url: 'https://vnexpress.net/rss/tin-moi-nhat.rss', sourceKey: 'VnExpress' },
+  { url: 'https://www.abc.net.au/news/feed/2942460/rss.xml', sourceKey: 'ABC News Australia' },
+  // Malaysia & regional
+  { url: 'https://www.malaymail.com/feed/rss/malaysia', sourceKey: 'Malay Mail Malaysia' },
+  { url: 'https://www.theborneopost.com/feed/', sourceKey: 'Borneo Post' },
+  { url: 'https://www.google.com/alerts/feeds/17422936520755129602/17812676385360555391', sourceKey: 'Google Alerts' },
+  { url: 'https://www.thesundaily.my/rss/local', sourceKey: 'The Sun Daily' },
+  { url: 'https://www.thestar.com.my/rss/News', sourceKey: 'The Star News' },
+  { url: 'https://www.thestar.com.my/rss/News/Nation', sourceKey: 'The Star Nation' },
+  { url: 'http://english.astroawani.com/rss/national/public', sourceKey: 'Astro Awani National' },
+  { url: 'http://english.astroawani.com/rss/international/public', sourceKey: 'Astro Awani International' },
+  { url: 'https://rss2.feedspot.com/https://www.malaysia-chronicle.com/', sourceKey: 'Malaysia Chronicle' },
+  { url: 'http://www.sarawakreport.org/feed/', sourceKey: 'Sarawak Report' },
+  { url: 'https://themalaysianreserve.com/feed/', sourceKey: 'The Malaysian Reserve' },
+  { url: 'https://mediaumnolibaran.blogspot.com/feeds/posts/default', sourceKey: 'Media Umno Libaran' },
+  { url: 'https://says.com/my/rss', sourceKey: 'SAYS' },
+  { url: 'http://www.bernama.com/bernama/v8/rss/english.php', sourceKey: 'Bernama' },
+  { url: 'https://www.hmetro.com.my/utama.xml/feed', sourceKey: 'Harian Metro' },
+  { url: 'https://www.malaysia-today.net/feed/', sourceKey: 'Malaysia Today' },
+  { url: 'https://www.freemalaysiatoday.com/feed/', sourceKey: 'Free Malaysia Today' },
+  { url: 'http://feeds.malaysianews.net/rss/48cba686fe041718', sourceKey: 'Malaysia News' },
+  { url: 'https://news.google.com/rss/search?q=politics%20in%20malaysia&hl=en-MY&gl=MY&ceid=MY%3Aen', sourceKey: 'Google News Malaysia Politics' },
+  { url: 'https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSkwyMHZNR0puZVRZeEVnVmxiaTFIUWlnQVAB?hl=en-MY&gl=MY&ceid=MY%3Aen', sourceKey: 'Google News Malaysia' },
+  { url: 'https://asia.nikkei.com/rss/feed/nar', sourceKey: 'Nikkei Asia' },
+  { url: 'https://www.newmandala.org/feed/', sourceKey: 'New Mandala' },
+  { url: 'https://www.asiasentinel.com/feed/', sourceKey: 'Asia Sentinel' },
+  { url: 'http://www.scmp.com/rss/91/feed', sourceKey: 'SCMP' },
+  { url: 'https://www.channelnewsasia.com/rssfeeds/8395986', sourceKey: 'Channel News Asia' },
+  { url: 'https://splash247.com/category/region/asia/feed/', sourceKey: 'Splash 247' },
+  { url: 'https://asianmilitaryreview.com/feed/', sourceKey: 'Asian Military Review' },
+  { url: 'https://theasialive.com/feed', sourceKey: 'The Asia Live' },
+  { url: 'http://aliran.com/feed', sourceKey: 'Aliran' },
+  { url: 'http://www.theborneopost.com/?feed=rss2', sourceKey: 'Borneo Post RSS2' },
+  { url: 'http://cilisos.my/feed/', sourceKey: 'Cilisos' },
+  { url: 'https://focusmalaysia.my/feed/', sourceKey: 'Focus Malaysia' },
+  { url: 'http://www.themalaymailonline.com/feed/rss/malaysia', sourceKey: 'Malay Mail Online' },
+  { url: 'http://www.guardian.co.uk/world/malaysia/rss', sourceKey: 'Guardian Malaysia' },
+  { url: 'https://www.malaysianow.com/feed/', sourceKey: 'Malaysia Now' },
+  { url: 'http://topics.nytimes.com/top/news/international/countriesandterritories/malaysia/?rss=1', sourceKey: 'NYT Malaysia' },
+  { url: 'http://www.soyacincau.com/feed/', sourceKey: 'Soya Cincau' },
+  { url: 'http://rss.astroawani.com/rss/latest/public', sourceKey: 'Astro Awani' },
+  { url: 'http://thecoverage.my/feed/', sourceKey: 'The Coverage' },
+  { url: 'https://www.thevibes.com/rss', sourceKey: 'The Vibes' },
+  { url: 'http://www.therakyatpost.com/feed/', sourceKey: 'The Rakyat Post' },
+  { url: 'http://feeds2.feedburner.com/malaysianwireless', sourceKey: 'Malaysian Wireless' },
+  { url: 'http://www.zaid.my/?feed=rss2', sourceKey: 'Zaid' },
+  { url: 'http://www.mariammokhtar.com/feed/', sourceKey: 'Mariam Mokhtar' },
+  { url: 'http://feeds.theedgemarkets.com/theedgemarkets/mytopstories.rss', sourceKey: 'The Edge Markets' },
+  { url: 'https://www.themalaysianinsight.com/rss/all/', sourceKey: 'The Malaysian Insight' },
+  { url: 'http://harismibrahim.wordpress.com/feed/', sourceKey: 'Haris Ibrahim' },
+  { url: 'http://anilnetto.com/feed/', sourceKey: 'Anil Netto' },
+  { url: 'http://www.bernama.com/bernama/v7/rss/english.php', sourceKey: 'Bernama English' },
+  { url: 'https://www.malaysiakini.com/rss/en/news.rss', sourceKey: 'Malaysiakini' },
+  { url: 'http://syedsoutsidethebox.blogspot.com/feeds/posts/default', sourceKey: "Syed's Outside The Box" },
+  { url: 'http://rockybru.blogspot.com/feeds/posts/default', sourceKey: 'Rocky Bru' },
+  { url: 'http://darisungaiderhaka.blogspot.com/feeds/posts/default', sourceKey: 'Dari Sungai Derhaka' },
+  { url: 'http://anwaribrahimblog.com/feed/', sourceKey: 'Anwar Ibrahim Blog' },
+  { url: 'http://bersih.org/?feed=rss2', sourceKey: 'BERSIH' },
+  { url: 'http://chedet.cc/?feed=rss2', sourceKey: 'Chedet' },
+  { url: 'http://blog.limkitsiang.com/feed/', sourceKey: 'Lim Kit Siang' },
+  { url: 'http://www.zunar.my/feed/', sourceKey: 'Zunar' },
+  { url: 'http://www.antaranews.com/en/rss/news.xml', sourceKey: 'Antara News' },
+]
+
+/** Political bias options (for Source Analysis bar) */
+export const BIAS_LABELS = ['LEFT', 'LEFT CENTER', 'CENTER', 'RIGHT CENTER', 'RIGHT']
+
+/** Factual reporting options */
+export const FACTUAL_LABELS = ['VERY LOW', 'LOW', 'MIXED', 'MOSTLY', 'HIGH', 'VERY HIGH']
+
+/**
+ * Source analysis: political bias, factual reporting, credibility.
+ * Used when user clicks bias label on a card. New sources fall back to DEFAULT_ANALYSIS.
+ */
+export const SOURCE_ANALYSIS = {
+  'BBC World': { bias: 'LEFT CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'Guardian World': { bias: 'LEFT', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'AP News': { bias: 'LEFT CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'Reuters World': { bias: 'CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'Reuters US': { bias: 'CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'CNN World': { bias: 'LEFT', factual: 'MIXED', credibility: 'MEDIUM CREDIBILITY' },
+  'NPR News': { bias: 'LEFT CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'Politico': { bias: 'LEFT CENTER', factual: 'MOSTLY', credibility: 'MEDIUM CREDIBILITY' },
+  'Axios': { bias: 'CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'Fox News': { bias: 'RIGHT', factual: 'MIXED', credibility: 'MEDIUM CREDIBILITY' },
+  'NBC News': { bias: 'LEFT CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'CBS News': { bias: 'LEFT CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'France 24': { bias: 'CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'EuroNews': { bias: 'CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'Le Monde': { bias: 'LEFT CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'DW News': { bias: 'CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'Al Jazeera': { bias: 'LEFT CENTER', factual: 'MOSTLY', credibility: 'MEDIUM CREDIBILITY' },
+  'UN News': { bias: 'CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'WHO': { bias: 'CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'Foreign Affairs': { bias: 'CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'Federal Reserve': { bias: 'CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'SEC': { bias: 'CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+  'CISA': { bias: 'CENTER', factual: 'HIGH', credibility: 'HIGH CREDIBILITY' },
+}
+
+/** Default when source not in SOURCE_ANALYSIS */
+const DEFAULT_ANALYSIS = { bias: 'CENTER', factual: 'MIXED', credibility: 'MEDIUM CREDIBILITY' }
+
+export function getSourceAnalysis(sourceName) {
+  if (!sourceName || typeof sourceName !== 'string') return DEFAULT_ANALYSIS
+  const key = sourceName.trim()
+  return SOURCE_ANALYSIS[key] || DEFAULT_ANALYSIS
+}

@@ -1,0 +1,77 @@
+/**
+ * Livestreams configuration — three categories matching the reference design.
+ * embedUrl uses YouTube's /live endpoint which auto-redirects to the current livestream.
+ * flag uses ISO country-code emoji pairs for the flag rendering.
+ */
+
+export const STREAM_CATEGORIES = [
+  {
+    id: 'news',
+    label: 'NEWS CHANNELS',
+    streams: [
+      { id: 'cnn',              name: 'CNN',                 flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCupvZG-5ko_eiXAupbDfxWw', watchUrl: 'https://edition.cnn.com/live-tv' },
+      { id: 'fox-news',         name: 'Fox News (No Audio)', flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCXIJgqnII2ZOINSWNOGFThA', watchUrl: 'https://www.youtube.com/@FoxNews/live' },
+      { id: 'cbs-news',         name: 'CBS News',            flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UC8p1vwvWtl6T73JiExfWs1g', watchUrl: 'https://www.youtube.com/@CBSNews/live' },
+      { id: 'nbc-news',         name: 'NBC News',            flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCeY0bbntWzzVIaj2z3QigXg', watchUrl: 'https://www.youtube.com/@NBCNews/live' },
+      { id: 'abc-news',         name: 'ABC News',            flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCBi2mrWuNuyYy4gbM6fU18Q', watchUrl: 'https://www.youtube.com/@ABCNews/live' },
+      { id: 'bloomberg',        name: 'Bloomberg',           flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCIALMKvObZNtJ6AmdCLP7Lg', watchUrl: 'https://www.youtube.com/@business/live' },
+      { id: 'newsmax',          name: 'Newsmax',             flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCx6h-dWzJ5NpAlja1YsApdg', watchUrl: 'https://www.youtube.com/@ABORNEMAX/live' },
+      { id: 'bbc-world',        name: 'BBC World',           flag: '🇬🇧', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UC16niRr50-MSBwiO3YDb3RA', watchUrl: 'https://www.youtube.com/@BBCNews/live' },
+      { id: 'nhk-world',        name: 'NHK World',           flag: '🇯🇵', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCQ14dFDlpSsFiHQKKJSE5IQ', watchUrl: 'https://www.youtube.com/@NHKWORLDJAPAN/live' },
+      { id: 'france24',         name: 'France 24',           flag: '🇫🇷', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCQfwfsi5VrQ8yKZ-UWmAEFg', watchUrl: 'https://www.youtube.com/@FRANCE24English/live' },
+      { id: 'gb-news',          name: 'GB News',             flag: '🇬🇧', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCBDU5IMsMUmhGiKyNWlEdrg', watchUrl: 'https://www.youtube.com/@GBNewsOnline/live' },
+      { id: 'iran-intl',        name: 'Iran Intl',           flag: '🇮🇷', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCGag3ZOHrl0bqhkBsBo9v3A', watchUrl: 'https://www.youtube.com/@IranIntlEnglish/live' },
+      { id: 'rt',               name: 'RT',                  flag: '🇷🇺', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCpwvZwUam-Ur-JVjCnR1Yyw', watchUrl: 'https://www.youtube.com/@RTnews/live' },
+      { id: 'ndtv',             name: 'NDTV 24×7',           flag: '🇮🇳', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCttspZesZIDEwwpVIgoZtWQ', watchUrl: 'https://www.youtube.com/@ndtv/live' },
+      { id: 'cgtn',             name: 'CGTN',                flag: '🇨🇳', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCgrNz-aDmcr2uuto8_DL2jg', watchUrl: 'https://www.youtube.com/@CGTNOfficial/live' },
+      { id: 'dw-news',          name: 'DW News',             flag: '🇩🇪', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCknLrEdhRCp1aegoMqRaCZg', watchUrl: 'https://www.youtube.com/@daborneNEWS/live' },
+      { id: 'cna',              name: 'CNA',                 flag: '🇸🇬', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCo8bcnLyZH8tBIH9V1mLgqQ', watchUrl: 'https://www.youtube.com/@channelnewsasia/live' },
+      { id: 'trt-world',        name: 'TRT World',           flag: '🇹🇷', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UC7fWeaHhqgM4Lba4oDANRgQ', watchUrl: 'https://www.youtube.com/@tabornerworld/live' },
+      { id: 'arirang',          name: 'Arirang TV',          flag: '🇰🇷', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCL_hAEl1uGZByHt-CA51dGA', watchUrl: 'https://www.youtube.com/@ariabornerangworld/live' },
+      { id: 'al-arabiya',       name: 'Al Arabiya',          flag: '🇸🇦', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCNye-wNBqNL5ZzHSJj3l8Bg', watchUrl: 'https://www.youtube.com/@AlArabiya/live' },
+      { id: 'sky-news-arabia',  name: 'Sky News Arabia',     flag: '🇦🇪', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UC_DaBbqp2V4SinVYcPqrU3A', watchUrl: 'https://www.youtube.com/@skynewsarabia/live' },
+      { id: 'aljazeera-arabic', name: 'Al Jazeera Arabic',   flag: '🇶🇦', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCBvxne2bHeHBb7MqkMq3G_w', watchUrl: 'https://www.youtube.com/@abornejazeera/live' },
+    ],
+  },
+  {
+    id: 'youtube',
+    label: 'YOUTUBE NEWS',
+    streams: [
+      { id: 'sky-news',         name: 'Sky News',            flag: '🇬🇧', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCoMdktPbSTixAyNGwb-UYkQ', watchUrl: 'https://www.youtube.com/@SkyNews/live' },
+      { id: 'aljazeera-en',     name: 'Al Jazeera',          flag: '🇶🇦', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCNye-wNBqNL5ZzHSJj3l8Bg', watchUrl: 'https://www.youtube.com/@AlJazeeraEnglish/live' },
+      { id: 'livenow-fox',      name: 'LiveNOW from FOX',    flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCGBpxWJr9FNOclkhgIBt9nQ', watchUrl: 'https://www.youtube.com/@LiveNOW/live' },
+      { id: 'wion',             name: 'WION',                flag: '🇮🇳', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UC_gUM8rL-Lrg6O3adPW9K1g', watchUrl: 'https://www.youtube.com/@WIONNews/live' },
+      { id: 'euronews',         name: 'Euronews',            flag: '🇪🇺', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCW2QcKZiU8aUGg4yxCIditg', watchUrl: 'https://www.youtube.com/@euronews/live' },
+      { id: 'abc-australia',    name: 'ABC Australia',        flag: '🇦🇺', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCVgO39Bk5sMo66-6o6Spn6Q', watchUrl: 'https://www.youtube.com/@ABCNewsAustralia/live' },
+      { id: 'africanews',       name: 'Africanews',          flag: '🌍', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UC1mBFGWKBZDMrAOJi77faMA', watchUrl: 'https://www.youtube.com/@africanews/live' },
+      { id: 'agenda-free',      name: 'Agenda Free TV',      flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCKe7zDqcfBWO_LxlCmOlL6A', watchUrl: 'https://www.youtube.com/@AgendaFreeTV/live' },
+      { id: 'i24-news',         name: 'i24 News',            flag: '🇮🇱', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCp1WB22mOBi1pFiDDGdoN1Q', watchUrl: 'https://www.youtube.com/@i24NEWSEnglish/live' },
+      { id: 'kbs-world',        name: 'KBS World',           flag: '🇰🇷', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCcQTRi69dsVYHN3exePtZ1A', watchUrl: 'https://www.youtube.com/@KBSWorldTV/live' },
+      { id: 'tvp-world',        name: 'TVP World',           flag: '🇵🇱', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCrBr_AuYwGaMKgl657oHnDg', watchUrl: 'https://www.youtube.com/@TVPWorld/live' },
+      { id: 'iltv',             name: 'ILTV Israel News',    flag: '🇮🇱', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCa_8PaZABqQtuQ5MZzUbGIw', watchUrl: 'https://www.youtube.com/@ILTVIsrael/live' },
+      { id: 'negocios-tv',      name: 'Negocios TV',         flag: '🇪🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCoZBponMFm9S3BvxZHk3VZg', watchUrl: 'https://www.youtube.com/@NegociosTV/live' },
+    ],
+  },
+  {
+    id: 'cams',
+    label: 'LIVE CAMS',
+    streams: [
+      { id: 'iss',              name: 'ISS Live',            flag: '🌐', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCLA_DiR1FfKNvjuUpBHmylQ', watchUrl: 'https://www.youtube.com/@NASA/live' },
+      { id: 'starbase',         name: 'Starbase LIVE',       flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCQbSp7Fnn-5bJpHIqSmA0RA', watchUrl: 'https://www.youtube.com/@NASASpaceflight/live' },
+      { id: 'ukraine-cam',      name: 'Ukraine Multi-Cam',   flag: '🇺🇦', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCQGqX5Ndpm4snE0NTjyOJnA', watchUrl: 'https://www.youtube.com/@LiveCamerasAround/live' },
+      { id: 'taipei-101',       name: 'Taipei 101',          flag: '🇹🇼', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UC2VoiSeBhSRx0cJRYG39w7Q', watchUrl: 'https://www.youtube.com/@skyabornelinewebcams/live' },
+      { id: 'hong-kong',        name: 'Hong Kong Peak',      flag: '🇭🇰', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UC2VoiSeBhSRx0cJRYG39w7Q', watchUrl: 'https://www.youtube.com/@skyabornelinewebcams/live' },
+      { id: 'shibuya',          name: 'Shibuya Crossing',    flag: '🇯🇵', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCgdHxnHSXvcAi4PjkNrs_cQ', watchUrl: 'https://www.youtube.com/@ShibuyaScrambleCrossing/live' },
+      { id: 'times-square',     name: 'Times Square',        flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCOLQi0RiDco-UQ2GpH0-kAg', watchUrl: 'https://www.youtube.com/@TimesSquareNYC/live' },
+      { id: 'jerusalem',        name: 'Jerusalem',           flag: '🇮🇱', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCaB_KyYOjfJGeo1Nv2jlFRg', watchUrl: 'https://www.youtube.com/@WesternWallHeritage/live' },
+      { id: 'lax',              name: 'LAX Airport',         flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCDPPPRrN4KnOcSpfKAKGu8Q', watchUrl: 'https://www.youtube.com/@LAXairport/live' },
+      { id: 'kilauea',          name: 'Kilauea Volcano',     flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCVGBbdIY99k7pYvnOGIxVjA', watchUrl: 'https://www.youtube.com/@USGSVolcanoes/live' },
+      { id: 'nasa-tv',          name: 'NASA TV',             flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCLA_DiR1FfKNvjuUpBHmylQ', watchUrl: 'https://www.youtube.com/@NASA/live' },
+      { id: 'united24',         name: 'United24 Ukraine',    flag: '🇺🇦', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCQGqX5Ndpm4snE0NTjyOJnA', watchUrl: 'https://www.youtube.com/@united24media/live' },
+      { id: 'mecca',            name: 'Mecca Kaaba',         flag: '🇸🇦', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCIS9orVs0GC9BVdaRqr3IYA', watchUrl: 'https://www.youtube.com/@AlquranAlkareem/live' },
+      { id: 'san-diego',        name: 'San Diego Harbor',    flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCmXMsS2rDbVNiY-FbETxP-g', watchUrl: 'https://www.youtube.com/@HDOnTap/live' },
+      { id: 'norfolk-ships',    name: 'Norfolk Ships',       flag: '🇺🇸', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCXlG96TmCCUzNxlPNxFBauQ', watchUrl: 'https://www.youtube.com/@ShipSpotting/live' },
+      { id: 'world-cams',       name: 'World Cams (earthTV)',flag: '🌐', embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCPIiYfDJMK6eJwdaLRXWoVQ', watchUrl: 'https://www.youtube.com/@earthTV/live' },
+    ],
+  },
+]
