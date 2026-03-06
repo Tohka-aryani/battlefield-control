@@ -35,7 +35,7 @@ export default function Header({ view, onViewChange }) {
     <header className="header">
       <div className="header-left">
         <span className="status-dot" />
-        <h1 className="title">Hyperion</h1>
+        <h1 className="title">Battlefield Control</h1>
       </div>
       <nav className="tabs">
         <button
