@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import { fetchTopMovers, hasApiKey, hasAlphaVantageKey } from '../../api/marketData'
+import TradingViewEmbed from './TradingViewEmbed'
+import { TRADINGVIEW_HOTLISTS_SCRIPT } from '../../data/tradingViewConfig'
 
 const MAX_BAR = 35
 
-function BarRow({ symbol, name, price, change }) {
+function BarRow({ symbol, name, price, change, onClick }) {
   const isPos = change >= 0
   const width = Math.min(100, (Math.abs(change) / MAX_BAR) * 100)
   return (
-    <div className="stocks-mover-row">
+    <div className="stocks-mover-row" onClick={() => onClick?.(symbol)} role="button" tabIndex={0}>
       <div className="stocks-mover-info">
         <span className={`stocks-mover-symbol ${isPos ? 'stocks-pos' : 'stocks-neg'}`}>{symbol}</span>
         {name && <span className="stocks-mover-name">{name}</span>}
@@ -27,12 +29,44 @@ function BarRow({ symbol, name, price, change }) {
   )
 }
 
-export default function StocksMovers() {
+function MoversWidget() {
+  const theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'
+  return (
+    <TradingViewEmbed
+      script={TRADINGVIEW_HOTLISTS_SCRIPT}
+      config={{
+        colorTheme: theme,
+        dateRange: '12M',
+        exchange: 'US',
+        showChart: true,
+        locale: 'en',
+        largeChartUrl: '',
+        isTransparent: true,
+        showSymbolLogo: false,
+        plotLineColorGrowing: 'rgba(41, 191, 101, 1)',
+        plotLineColorFalling: 'rgba(255, 68, 68, 1)',
+        gridLineColor: 'rgba(42, 46, 57, 0)',
+        scaleFontColor: 'rgba(134, 137, 147, 1)',
+        belowLineFillColorGrowing: 'rgba(41, 98, 255, 0.12)',
+        belowLineFillColorFalling: 'rgba(41, 98, 255, 0.12)',
+        belowLineFillColorGrowingBottom: 'rgba(41, 98, 255, 0)',
+        belowLineFillColorFallingBottom: 'rgba(41, 98, 255, 0)',
+        symbolActiveColor: 'rgba(41, 98, 255, 0.12)',
+        width: '100%',
+        height: 520,
+      }}
+      height={520}
+    />
+  )
+}
+
+export default function StocksMovers({ onSymbolClick }) {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
+    if (!hasApiKey()) { setLoading(false); return }
     let cancelled = false
     setLoading(true)
     setError(null)
@@ -47,6 +81,8 @@ export default function StocksMovers() {
     return () => { cancelled = true }
   }, [])
 
+  if (!hasApiKey()) return <MoversWidget />
+
   const dateStr = data?.lastUpdate
     ? new Date(data.lastUpdate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
     : new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
@@ -54,14 +90,10 @@ export default function StocksMovers() {
   if (loading) return <div className="stocks-loading">Loading movers…</div>
   if (error) {
     let msg
-    if (!hasApiKey()) msg = 'Add VITE_ALPHAVANTAGE_API_KEY (and/or VITE_FINNHUB_API_KEY) to .env and restart the dev server.'
-    else if (!hasAlphaVantageKey()) msg = 'Movers use Alpha Vantage. Add VITE_ALPHAVANTAGE_API_KEY to .env.'
+    if (!hasAlphaVantageKey()) msg = 'Movers use Alpha Vantage. Add VITE_ALPHAVANTAGE_API_KEY to .env.'
     else msg = error === 'No data' ? 'Unable to load data. Try again later.' : error
     return <div className="stocks-error">{msg}</div>
   }
-
-  const gainers = data?.gainers || []
-  const losers = data?.losers || []
 
   return (
     <div className="stocks-movers">
@@ -69,18 +101,17 @@ export default function StocksMovers() {
       <div className="stocks-movers-grid">
         <div className="stocks-movers-block">
           <h5 className="stocks-pos">TOP GAINERS</h5>
-          {gainers.map((g) => (
-            <BarRow key={g.symbol} symbol={g.symbol} name={g.name} price={g.price} change={g.change} />
+          {(data?.gainers || []).map((g) => (
+            <BarRow key={g.symbol} symbol={g.symbol} name={g.name} price={g.price} change={g.change} onClick={onSymbolClick} />
           ))}
         </div>
         <div className="stocks-movers-block">
           <h5 className="stocks-neg">TOP LOSERS</h5>
-          {losers.map((l) => (
-            <BarRow key={l.symbol} symbol={l.symbol} name={l.name} price={l.price} change={l.change} />
+          {(data?.losers || []).map((l) => (
+            <BarRow key={l.symbol} symbol={l.symbol} name={l.name} price={l.price} change={l.change} onClick={onSymbolClick} />
           ))}
         </div>
       </div>
-      <p className="stocks-hint">Click any stock to view details</p>
     </div>
   )
 }

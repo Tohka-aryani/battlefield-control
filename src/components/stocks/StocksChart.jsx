@@ -7,6 +7,7 @@ import {
   getSymbolDisplayName,
 } from '../../data/tradingViewConfig'
 import { getQuoteForChart, hasApiKey } from '../../api/marketData'
+import { fetchTvScannerQuotes } from '../../api/tradingViewData'
 import { getExchangeStatus } from '../../data/stocksConfig'
 
 const INTERVALS = [
@@ -27,7 +28,7 @@ const CHART_TABS = [
 
 const NYSE_TZ = 'America/New_York'
 
-export default function StocksChart({ symbol, theme, onRefresh }) {
+export default function StocksChart({ symbol, theme, onBack, onRefresh }) {
   const resolvedSymbol = (symbol || 'AAPL').trim() || 'AAPL'
   const [quote, setQuote] = useState(null)
   const [interval, setInterval] = useState('1M')
@@ -39,11 +40,24 @@ export default function StocksChart({ symbol, theme, onRefresh }) {
   }, [])
 
   useEffect(() => {
-    if (!hasApiKey()) return
     let cancelled = false
-    getQuoteForChart(resolvedSymbol)
-      .then((q) => !cancelled && setQuote(q))
-      .catch(() => {})
+    const upper = resolvedSymbol.toUpperCase()
+
+    if (hasApiKey()) {
+      getQuoteForChart(upper)
+        .then((q) => !cancelled && setQuote(q))
+        .catch(() => {})
+    } else {
+      const tvSym = toTradingViewSymbol(upper)
+      fetchTvScannerQuotes([tvSym])
+        .then((map) => {
+          if (cancelled || !map) return
+          const q = map.get(upper)
+          if (q) setQuote({ symbol: upper, ...q })
+        })
+        .catch(() => {})
+    }
+
     return () => { cancelled = true }
   }, [resolvedSymbol])
 
@@ -60,7 +74,16 @@ export default function StocksChart({ symbol, theme, onRefresh }) {
     <div className="stocks-chart-tab">
       <div className="stocks-chart-header">
         <div className="stocks-chart-header-left">
-          <span className="stocks-chart-back" aria-hidden>[&lt;]</span>
+          {onBack && (
+            <button
+              type="button"
+              className="stocks-chart-back"
+              onClick={onBack}
+              aria-label="Back"
+            >
+              [&lt;]
+            </button>
+          )}
           <span className="stocks-chart-symbol">{displaySymbol}</span>
           {companyName && <span className="stocks-chart-company-name">{companyName}</span>}
         </div>
@@ -84,20 +107,22 @@ export default function StocksChart({ symbol, theme, onRefresh }) {
           </span>
         )}
       </div>
-      <div className="stocks-chart-exchange">{exchangeLabel}</div>
 
-      <nav className="stocks-chart-tabs" aria-label="Chart view">
-        {CHART_TABS.map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            className={`stocks-chart-tab-btn ${chartTab === t.id ? 'active' : ''}`}
-            onClick={() => setChartTab(t.id)}
-          >
-            {t.label}
-          </button>
-        ))}
-      </nav>
+      <div className="stocks-chart-sub-header">
+        <nav className="stocks-chart-tabs" aria-label="Chart view">
+          {CHART_TABS.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              className={`stocks-chart-tab-btn ${chartTab === t.id ? 'active' : ''}`}
+              onClick={() => setChartTab(t.id)}
+            >
+              {t.label}
+            </button>
+          ))}
+        </nav>
+        <span className="stocks-chart-exchange">{exchangeLabel}</span>
+      </div>
 
       {chartTab === 'chart' && (
         <>

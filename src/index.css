@@ -1601,6 +1601,10 @@ html, body, #root {
   padding: 6px 0;
   font-size: 12px;
   font-family: var(--font-mono);
+  cursor: pointer;
+}
+.stocks-sector-collapse-head:hover .stocks-sector-name {
+  color: var(--text);
 }
 .stocks-sector-expand-btn {
   flex-shrink: 0;
@@ -1634,9 +1638,20 @@ html, body, #root {
   padding: 4px 0;
   font-size: 11px;
   font-family: var(--font-mono);
+  cursor: pointer;
+  border-radius: 3px;
+  padding-left: 4px;
+  margin-left: -4px;
+  padding-right: 4px;
+}
+.stocks-sector-stock-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+.stocks-sector-stock-row:hover .stocks-sector-stock-ticker {
+  color: var(--text);
 }
 .stocks-sector-stock-ticker {
-  width: 36px;
+  width: 48px;
   flex-shrink: 0;
   color: var(--accent);
   font-weight: 600;
@@ -1720,6 +1735,25 @@ html, body, #root {
   padding: 8px 0;
   font-size: 11px;
   color: var(--text-muted);
+}
+.stocks-loading-inline {
+  font-weight: 400;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-left: 8px;
+}
+.stocks-sector-stock-chart-hint {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.stocks-sector-stock-row:hover .stocks-sector-stock-chart-hint {
+  color: var(--accent);
+}
+.stocks-sector-stock-row .stocks-bar-wrap {
+  min-width: 60px;
+  max-width: 100px;
+  flex-shrink: 0;
 }
 
 /* Sectors: TradingView screener embed */
@@ -1869,6 +1903,11 @@ html, body, #root {
   padding: 6px 0;
   font-size: 11px;
   font-family: var(--font-mono);
+  cursor: pointer;
+  border-radius: 3px;
+}
+.stocks-mover-row:hover {
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .stocks-mover-symbol { font-weight: 600; }
@@ -1950,6 +1989,13 @@ html, body, #root {
 .stocks-quote-name { color: var(--text-muted); font-size: 10px; }
 .stocks-quote-price { color: var(--text-muted); }
 .stocks-quote-row .stocks-bar-wrap { min-width: 60px; max-width: 100px; }
+.stocks-quote-row-clickable {
+  cursor: pointer;
+  border-radius: 3px;
+}
+.stocks-quote-row-clickable:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
 
 .stocks-forex-row {
   display: grid;
@@ -2984,8 +3030,17 @@ html, body, #root {
   color: var(--text-muted);
 }
 .stocks-chart-back {
-  color: var(--text-muted);
-  cursor: default;
+  color: var(--accent);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+.stocks-chart-back:hover {
+  color: var(--text);
 }
 .stocks-chart-symbol {
   font-weight: 600;
@@ -3006,11 +3061,20 @@ html, body, #root {
   cursor: pointer;
 }
 .stocks-chart-refresh:hover { border-color: var(--accent); }
+.stocks-chart-sub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.stocks-chart-sub-header .stocks-chart-tabs {
+  flex: 1;
+}
 .stocks-chart-exchange {
   font-size: 10px;
   color: var(--text-muted);
   font-family: var(--font-mono);
-  margin-top: -4px;
+  white-space: nowrap;
 }
 
 .stocks-chart-price-row {

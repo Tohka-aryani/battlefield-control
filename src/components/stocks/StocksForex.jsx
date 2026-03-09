@@ -1,14 +1,34 @@
 import { useState, useEffect } from 'react'
-import { fetchForexRate, hasFinnhubKey } from '../../api/marketData'
+import { fetchForexRate, hasFinnhubKey, hasApiKey } from '../../api/marketData'
 import { FOREX_MAJOR_PAIRS, FOREX_CROSS_PAIRS } from '../../data/stocksConfig'
+import TradingViewEmbed from './TradingViewEmbed'
+import { TRADINGVIEW_FOREX_CROSS_RATES_SCRIPT } from '../../data/tradingViewConfig'
 
-export default function StocksForex() {
+function ForexWidget() {
+  const theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'
+  return (
+    <TradingViewEmbed
+      script={TRADINGVIEW_FOREX_CROSS_RATES_SCRIPT}
+      config={{
+        currencies: ['EUR', 'USD', 'JPY', 'GBP', 'CHF', 'AUD', 'CAD', 'NZD'],
+        colorTheme: theme,
+        isTransparent: true,
+        locale: 'en',
+        width: '100%',
+        height: 520,
+      }}
+      height={520}
+    />
+  )
+}
+
+export default function StocksForex({ onSymbolClick }) {
   const [major, setMajor] = useState([])
   const [cross, setCross] = useState([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
 
   useEffect(() => {
+    if (!hasApiKey()) { setLoading(false); return }
     let cancelled = false
     setLoading(true)
     const load = async () => {
@@ -18,45 +38,46 @@ export default function StocksForex() {
           Promise.all(FOREX_CROSS_PAIRS.map((p) => fetchForexRate(p.from, p.to))),
         ])
         if (cancelled) return
-        const m = FOREX_MAJOR_PAIRS.map((p, i) => (mResults[i] ? { ...p, ...mResults[i] } : null)).filter(Boolean)
-        const c = FOREX_CROSS_PAIRS.map((p, i) => (cResults[i] ? { ...p, ...cResults[i] } : null)).filter(Boolean)
-        setMajor(m)
-        setCross(c)
+        setMajor(FOREX_MAJOR_PAIRS.map((p, i) => (mResults[i] ? { ...p, ...mResults[i] } : null)).filter(Boolean))
+        setCross(FOREX_CROSS_PAIRS.map((p, i) => (cResults[i] ? { ...p, ...cResults[i] } : null)).filter(Boolean))
       } else {
         const m = []
-        const c = []
         for (const p of FOREX_MAJOR_PAIRS) {
           if (cancelled) return
           const r = await fetchForexRate(p.from, p.to)
           if (r) m.push({ ...p, ...r })
-          await new Promise((r) => setTimeout(r, 12500))
+          await new Promise((resolve) => setTimeout(resolve, 12500))
         }
+        const c = []
         for (const p of FOREX_CROSS_PAIRS) {
           if (cancelled) return
           const r = await fetchForexRate(p.from, p.to)
           if (r) c.push({ ...p, ...r })
-          await new Promise((r) => setTimeout(r, 12500))
+          await new Promise((resolve) => setTimeout(resolve, 12500))
         }
-        if (!cancelled) {
-          setMajor(m)
-          setCross(c)
-        }
+        if (!cancelled) { setMajor(m); setCross(c) }
       }
     }
     load()
-      .catch((e) => !cancelled && setError(e.message))
+      .catch(() => {})
       .finally(() => !cancelled && setLoading(false))
     return () => { cancelled = true }
   }, [])
 
+  if (!hasApiKey()) return <ForexWidget />
+
   const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 
-  if (loading && major.length === 0)
-    return <div className="stocks-loading">Loading forex (rate limit 5/min)…</div>
-  if (error) return <div className="stocks-error">Unable to load data.</div>
+  if (loading && major.length === 0) return <div className="stocks-loading">Loading forex…</div>
 
   const renderRow = (row) => (
-    <div key={row.label} className="stocks-forex-row">
+    <div
+      key={row.label}
+      className="stocks-forex-row stocks-quote-row-clickable"
+      onClick={() => onSymbolClick?.(row.symbol)}
+      role="button"
+      tabIndex={0}
+    >
       <span className="stocks-forex-symbol">{row.symbol}=X</span>
       <span className="stocks-forex-pair">{row.label}</span>
       <span className="stocks-forex-rate">{Number(row.rate).toFixed(4)}</span>

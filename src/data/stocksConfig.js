@@ -1,3 +1,119 @@
+/** GICS market sectors with representative stocks for the SECTORS tab */
+export const MARKET_SECTORS = [
+  {
+    id: 'technology', name: 'Technology',
+    stocks: [
+      { symbol: 'AVGO', name: 'Broadcom Inc.', exchange: 'NASDAQ' },
+      { symbol: 'NVDA', name: 'NVIDIA Corporation', exchange: 'NASDAQ' },
+      { symbol: 'GOOGL', name: 'Alphabet Inc.', exchange: 'NASDAQ' },
+      { symbol: 'AAPL', name: 'Apple Inc.', exchange: 'NASDAQ' },
+      { symbol: 'MSFT', name: 'Microsoft Corporation', exchange: 'NASDAQ' },
+      { symbol: 'META', name: 'Meta Platforms, Inc.', exchange: 'NASDAQ' },
+      { symbol: 'CRM', name: 'Salesforce, Inc.', exchange: 'NYSE' },
+      { symbol: 'ORCL', name: 'Oracle Corporation', exchange: 'NYSE' },
+    ],
+  },
+  {
+    id: 'energy', name: 'Energy',
+    stocks: [
+      { symbol: 'XOM', name: 'Exxon Mobil Corp.', exchange: 'NYSE' },
+      { symbol: 'CVX', name: 'Chevron Corporation', exchange: 'NYSE' },
+      { symbol: 'COP', name: 'ConocoPhillips', exchange: 'NYSE' },
+      { symbol: 'SLB', name: 'Schlumberger N.V.', exchange: 'NYSE' },
+      { symbol: 'EOG', name: 'EOG Resources', exchange: 'NYSE' },
+    ],
+  },
+  {
+    id: 'healthcare', name: 'Healthcare',
+    stocks: [
+      { symbol: 'UNH', name: 'UnitedHealth Group', exchange: 'NYSE' },
+      { symbol: 'JNJ', name: 'Johnson & Johnson', exchange: 'NYSE' },
+      { symbol: 'LLY', name: 'Eli Lilly & Co.', exchange: 'NYSE' },
+      { symbol: 'PFE', name: 'Pfizer Inc.', exchange: 'NYSE' },
+      { symbol: 'ABBV', name: 'AbbVie Inc.', exchange: 'NYSE' },
+    ],
+  },
+  {
+    id: 'consumer-staples', name: 'Consumer Staples',
+    stocks: [
+      { symbol: 'PG', name: 'Procter & Gamble', exchange: 'NYSE' },
+      { symbol: 'KO', name: 'Coca-Cola Company', exchange: 'NYSE' },
+      { symbol: 'PEP', name: 'PepsiCo Inc.', exchange: 'NASDAQ' },
+      { symbol: 'COST', name: 'Costco Wholesale', exchange: 'NASDAQ' },
+      { symbol: 'WMT', name: 'Walmart Inc.', exchange: 'NYSE' },
+    ],
+  },
+  {
+    id: 'utilities', name: 'Utilities',
+    stocks: [
+      { symbol: 'NEE', name: 'NextEra Energy', exchange: 'NYSE' },
+      { symbol: 'SO', name: 'Southern Company', exchange: 'NYSE' },
+      { symbol: 'DUK', name: 'Duke Energy Corp.', exchange: 'NYSE' },
+      { symbol: 'D', name: 'Dominion Energy', exchange: 'NYSE' },
+    ],
+  },
+  {
+    id: 'communication', name: 'Communication Services',
+    stocks: [
+      { symbol: 'GOOG', name: 'Alphabet Inc. C', exchange: 'NASDAQ' },
+      { symbol: 'NFLX', name: 'Netflix Inc.', exchange: 'NASDAQ' },
+      { symbol: 'DIS', name: 'Walt Disney Co.', exchange: 'NYSE' },
+      { symbol: 'TMUS', name: 'T-Mobile US', exchange: 'NASDAQ' },
+      { symbol: 'VZ', name: 'Verizon Communications', exchange: 'NYSE' },
+    ],
+  },
+  {
+    id: 'industrials', name: 'Industrials',
+    stocks: [
+      { symbol: 'HON', name: 'Honeywell International', exchange: 'NASDAQ' },
+      { symbol: 'UPS', name: 'United Parcel Service', exchange: 'NYSE' },
+      { symbol: 'CAT', name: 'Caterpillar Inc.', exchange: 'NYSE' },
+      { symbol: 'DE', name: 'Deere & Company', exchange: 'NYSE' },
+      { symbol: 'GE', name: 'GE Aerospace', exchange: 'NYSE' },
+    ],
+  },
+  {
+    id: 'real-estate', name: 'Real Estate',
+    stocks: [
+      { symbol: 'AMT', name: 'American Tower Corp.', exchange: 'NYSE' },
+      { symbol: 'PLD', name: 'Prologis Inc.', exchange: 'NYSE' },
+      { symbol: 'CCI', name: 'Crown Castle Inc.', exchange: 'NYSE' },
+      { symbol: 'EQIX', name: 'Equinix Inc.', exchange: 'NASDAQ' },
+      { symbol: 'SPG', name: 'Simon Property Group', exchange: 'NYSE' },
+    ],
+  },
+  {
+    id: 'materials', name: 'Materials',
+    stocks: [
+      { symbol: 'LIN', name: 'Linde plc', exchange: 'NASDAQ' },
+      { symbol: 'APD', name: 'Air Products & Chemicals', exchange: 'NYSE' },
+      { symbol: 'ECL', name: 'Ecolab Inc.', exchange: 'NYSE' },
+      { symbol: 'SHW', name: 'Sherwin-Williams Co.', exchange: 'NYSE' },
+      { symbol: 'NEM', name: 'Newmont Corporation', exchange: 'NYSE' },
+    ],
+  },
+  {
+    id: 'consumer-discretionary', name: 'Consumer Discretionary',
+    stocks: [
+      { symbol: 'AMZN', name: 'Amazon.com Inc.', exchange: 'NASDAQ' },
+      { symbol: 'TSLA', name: 'Tesla Inc.', exchange: 'NASDAQ' },
+      { symbol: 'HD', name: 'Home Depot Inc.', exchange: 'NYSE' },
+      { symbol: 'MCD', name: "McDonald's Corp.", exchange: 'NYSE' },
+      { symbol: 'NKE', name: 'Nike Inc.', exchange: 'NYSE' },
+    ],
+  },
+  {
+    id: 'financials', name: 'Financials',
+    stocks: [
+      { symbol: 'JPM', name: 'JPMorgan Chase & Co.', exchange: 'NYSE' },
+      { symbol: 'V', name: 'Visa Inc.', exchange: 'NYSE' },
+      { symbol: 'MA', name: 'Mastercard Inc.', exchange: 'NYSE' },
+      { symbol: 'BAC', name: 'Bank of America Corp.', exchange: 'NYSE' },
+      { symbol: 'GS', name: 'Goldman Sachs Group', exchange: 'NYSE' },
+    ],
+  },
+]
+
 /** Defense / Aerospace tickers for DEFENSE tab */
 export const DEFENSE_TICKERS = [
   'LMT', 'NOC', 'RTX', 'GD', 'BA', 'LHX', 'TXT', 'HII', 'LDOS', 'CACI',
